@@ -1,3 +1,4 @@
+// ignore: file_names
 class UrlAPI {
   static String login = "https://3006.mevivu.net/api/v1/login";
   static String register = "https://3006.mevivu.net/api/v1/register";

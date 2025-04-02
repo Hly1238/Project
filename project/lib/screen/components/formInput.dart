@@ -4,17 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class FormInput extends StatelessWidget {
   const FormInput({
     super.key,
-    required TextEditingController userController,
-    required FocusNode userFocusNode,
-    required String hintText,
-    required Icon icon,
-  })  : _userController = userController,
-        _userFocusNode = userFocusNode,
-        hintText = hintText,
-        icon = icon;
+    required this.userController,
+    required this.userFocusNode,
+    required this.hintText,
+    required this.icon,
+  });
 
-  final TextEditingController _userController;
-  final FocusNode _userFocusNode;
+  final TextEditingController userController;
+  final FocusNode userFocusNode;
   final String hintText;
   final Icon icon;
 
@@ -23,8 +20,8 @@ class FormInput extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: new BorderRadius.circular(5.0),
-        boxShadow: [
+        borderRadius: BorderRadius.circular(5.0),
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             spreadRadius: 1,
@@ -33,8 +30,8 @@ class FormInput extends StatelessWidget {
         ],
       ),
       child: TextFormField(
-        controller: _userController,
-        focusNode: _userFocusNode,
+        controller: userController,
+        focusNode: userFocusNode,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
@@ -43,20 +40,21 @@ class FormInput extends StatelessWidget {
           hintText: hintText,
           hintStyle: GoogleFonts.inter().copyWith(
             fontSize: 14.0,
-            color: Color(0xFF4C5252),
+            color: const Color(0xFF4C5252),
             fontWeight: FontWeight.w400,
           ),
           prefixIcon: Container(
             padding: const EdgeInsets.all(10.0),
             child: icon,
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFF176E6D), width: 0.5),
           ),
-          contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 2.0),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 15.0, horizontal: 2.0),
         ),
         keyboardType: TextInputType.emailAddress,
-        autofillHints: [AutofillHints.email],
+        autofillHints: const [AutofillHints.email],
         // validator: (name) => TValidation.validateEmail(name),
       ),
     );

@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PassFormInput extends StatefulWidget {
-  PassFormInput({
+class FormInputPass extends StatefulWidget {
+  FormInputPass({
     super.key,
-    required TextEditingController passwordController,
-    required FocusNode passwordFocusNode,
-    required bool isObscured,
-    required String hintText,
-  })  : _passwordController = passwordController,
-        _passwordFocusNode = passwordFocusNode,
-        _isObscured = isObscured,
-        hintText = hintText;
+    required this.passwordController,
+    required this.passwordFocusNode,
+    required this.isObscured,
+    required this.hintText,
+  });
 
-  final TextEditingController _passwordController;
-  final FocusNode _passwordFocusNode;
-  bool _isObscured;
+  final TextEditingController passwordController;
+  final FocusNode passwordFocusNode;
+  bool isObscured;
   final String hintText;
   @override
-  _PassFormInputState createState() => _PassFormInputState();
+  _FormInputPassState createState() => _FormInputPassState();
 }
 
-class _PassFormInputState extends State<PassFormInput> {
+class _FormInputPassState extends State<FormInputPass> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: widget._passwordController,
-      focusNode: widget._passwordFocusNode,
+      controller: widget.passwordController,
+      focusNode: widget.passwordFocusNode,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -35,35 +32,36 @@ class _PassFormInputState extends State<PassFormInput> {
         hintText: widget.hintText,
         hintStyle: GoogleFonts.inter().copyWith(
           fontSize: 14.0,
-          color: Color(0xFF4C5252),
+          color: const Color(0xFF4C5252),
           fontWeight: FontWeight.w400,
         ),
         prefixIcon: Container(
           padding: const EdgeInsets.all(10.0),
-          child: Icon(Icons.lock_outline_rounded),
+          child: const Icon(Icons.lock_outline_rounded),
         ),
         suffixIcon: Padding(
           padding: const EdgeInsetsDirectional.only(end: 12.0),
           child: IconButton(
             icon: Icon(
-              widget._isObscured ? Icons.visibility : Icons.visibility_off,
-              color: Color(0xAAAA000000),
+              widget.isObscured ? Icons.visibility : Icons.visibility_off,
+              color: const Color(0xaaaa000000),
             ),
             onPressed: () {
               setState(() {
-                widget._isObscured = !widget._isObscured;
+                widget.isObscured = !widget.isObscured;
               });
             },
           ),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xFF176E6D), width: 0.5),
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 2.0),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 15.0, horizontal: 2.0),
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       // validator: (value) => TValidation.validatePassword(value),
-      obscureText: widget._isObscured,
+      obscureText: widget.isObscured,
       // onEditingComplete: () => TextInput.finishAutofillContext(),
     );
   }

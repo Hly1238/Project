@@ -1,24 +1,23 @@
-class AccountModel {
+class Account {
   final String fullname;
   final String phone;
   final String email;
   final String password;
-  final String password_confirmation;
-  final String dharma_name;
+  final String passwordConfirmation;
+  final String dharmaName;
   final String birthday;
 
-  AccountModel({
+  Account({
     required this.fullname,
     required this.phone,
     required this.email,
     required this.password,
-    required this.password_confirmation,
-    required this.dharma_name,
+    required this.passwordConfirmation,
+    required this.dharmaName,
     required this.birthday,
   });
   @override
   String toString() {
-    // TODO: implement toString
     return '$fullname - $password';
   }
 
@@ -27,8 +26,8 @@ class AccountModel {
         "phone": phone,
         "email": email,
         "password": password,
-        "password_confirmation": password_confirmation,
-        "dharma_name": dharma_name,
+        "password_confirmation": passwordConfirmation,
+        "dharma_name": dharmaName,
         "birthday": birthday
       };
 }
