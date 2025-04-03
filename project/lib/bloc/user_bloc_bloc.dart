@@ -11,11 +11,11 @@ part 'user_bloc_state.dart';
 class UserBlocBloc extends Bloc<UserBlocEvent, UserBlocState> {
   final AccountService accountService = AccountService();
   UserBlocBloc() : super(UserBlocInitial()) {
-    on<LoginEvent>(LoginHandle);
-    on<RegisterEvent>(RegisterHandle);
+    on<LoginEvent>(loginHandle);
+    on<RegisterEvent>(registerHandle);
   }
 
-  Future<void> LoginHandle(
+  Future<void> loginHandle(
       LoginEvent event, Emitter<UserBlocState> emit) async {
     try {
       emit(LoadingState());
@@ -24,10 +24,16 @@ class UserBlocBloc extends Bloc<UserBlocEvent, UserBlocState> {
       emit(SuccessState(message: mess));
       await Future.delayed(const Duration(seconds: 3));
       emit(UserBlocInitial());
-    } catch (e) {}
+    } catch (e) {
+      emit(FailState());
+      await Future.delayed(const Duration(seconds: 3));
+      emit(UserBlocInitial());
+    } finally {
+      emit(UserBlocInitial());
+    }
   }
 
-  FutureOr<void> RegisterHandle(
+  FutureOr<void> registerHandle(
       RegisterEvent event, Emitter<UserBlocState> emit) async {
     try {
       emit(LoadingState());
@@ -35,6 +41,12 @@ class UserBlocBloc extends Bloc<UserBlocEvent, UserBlocState> {
       emit(SuccessState(message: mess));
       await Future.delayed(const Duration(seconds: 3));
       emit(UserBlocInitial());
-    } catch (e) {}
+    } catch (e) {
+      emit(FailState());
+      await Future.delayed(const Duration(seconds: 3));
+      emit(UserBlocInitial());
+    } finally {
+      emit(UserBlocInitial());
+    }
   }
 }

@@ -15,3 +15,5 @@ class SuccessState extends UserBlocState {
   final String message;
   const SuccessState({required this.message});
 }
+
+class FailState extends UserBlocState {}
